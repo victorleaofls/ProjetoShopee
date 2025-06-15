@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2ecc71;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        .alert-message {
+            text-align: center;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .error-message {
+            background-color: #ffe5e5;
+            color: #d60000;
+        }
+
+        .success-message {
+            background-color: #e6ffed;
+            color: #218838;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .register-link a {
+            color: #2ecc71;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let sucesso = /*[[${msgSucesso != null}]]*/ false;
+        if (sucesso) {
+            setTimeout(() => {
+                window.location.href = '/produto'; // Altere para a rota desejada
+            }, 2000);
+        }
+        /*]]>*/
+    </script>
+</head>
+<body>
+
+<div class="login-container">
+    <h1>Login</h1>
+    <form th:action="@{/login}" method="post">
+        <label>Email:</label>
+        <input type="text" name="email" required />
+
+        <label>Senha:</label>
+        <input type="password" name="senha" required />
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    <!-- Mensagem de erro -->
+    <div th:if="${msgErro}" class="alert-message error-message">
+        <p th:text="${msgErro}"></p>
+    </div>
+
+    <!-- Mensagem de sucesso -->
+    <div th:if="${msgSucesso}" class="alert-message success-message">
+        <p th:text="${msgSucesso}"></p>
+        <p>Redirecionando...</p>
+    </div>
+
+    <div class="register-link">
+        <p>Não tem cadastro? <a th:href="@{/usuario/cadastro}">Cadastre-se aqui</a></p>
+    </div>
+</div>
+
+</body>
+</html>

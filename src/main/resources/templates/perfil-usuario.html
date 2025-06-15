@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil do Usuário</title>
+    <style>
+        /* mesmo estilo que o cadastro.html */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #2ecc71;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2ecc71;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #e6f9e6;
+        }
+
+        .perfil-container {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .perfil-container h1 {
+            text-align: center;
+            color: #2ecc71;
+            margin-bottom: 30px;
+        }
+
+        .perfil-item {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .perfil-item span {
+            font-weight: bold;
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>VareXpress</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a th:href="@{/pagina}">Página Inicial</a></li>
+        <li><a th:href="@{/produto}">Produtos</a></li>
+        <li><a th:href="@{/usuario}">Usuário</a></li>
+    </ul>
+</nav>
+
+<div class="perfil-container">
+    <h1>Perfil do Usuário</h1>
+
+    <div class="perfil-item">
+        <span>Nome:</span> <span th:text="${cliente.nome}">Nome do Cliente</span>
+    </div>
+    <div class="perfil-item">
+        <span>Email:</span> <span th:text="${cliente.email}">email@exemplo.com</span>
+    </div>
+    <div class="perfil-item">
+        <span>CPF:</span> <span th:text="${cliente.cpf}">000.000.000-00</span>
+    </div>
+</div>
+
+</body>
+</html>

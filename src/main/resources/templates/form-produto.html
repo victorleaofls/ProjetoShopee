@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar Produto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #2ecc71;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2ecc71;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #d1f2d8; /* tom clarinho do verde */
+        }
+
+        .produto-container {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .produto-container h1 {
+            text-align: center;
+            color: #2ecc71;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>VareXpress</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a th:href="@{/pagina}">Página Inicial</a></li>
+        <li><a th:href="@{/produto}">Produtos</a></li>
+        <li><a th:href="@{/usuario}">Usuário</a></li>
+    </ul>
+</nav>
+
+<div class="produto-container">
+    <h1 th:text="${produto.id == 0} ? 'Novo Produto' : 'Editar Produto'">Produto</h1>
+    <form th:action="@{${produto.id == 0} ? '/produto/salvar' : '/produto/atualizar'}" method="post" th:object="${produto}">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" required />
+        </div>
+
+        <div class="form-group">
+            <label for="preco">Preço:</label>
+            <input type="number" id="preco" step="0.01" th:field="*{preco}" required />
+        </div>
+
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+
+</body>
+</html>
